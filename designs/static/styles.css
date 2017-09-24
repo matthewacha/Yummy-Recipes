@@ -22,7 +22,7 @@ a, .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
 }
 
 #background-img{
-	background: url("bkgrnd.jpg") no-repeat center center;
+	background: url("bckgrnd.jpg") no-repeat center center;
 	
 }
 .form-control{
@@ -65,7 +65,7 @@ label{
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url("img/bkgrnd.jpg") no-repeat center;
+    background: url("/bckgrnd.jpg") no-repeat center;
     background-size: cover;
     height: 100%;
 }
@@ -75,7 +75,7 @@ label{
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url("img/bkgrnd.jpg") no-repeat center;
+    background: url("bckgrnd.jpg") no-repeat center;
     background-size: cover;
     height: 100%;
 	
@@ -119,18 +119,25 @@ padding:100px;
 
 .panel{
 	margin-top:auto;
-	background-color:#289082;
-	padding-left:50px;
+	background-color:#822dc3;
+	padding-left:10px;
 	padding-top:25px;
+	width:300px;
 }
 
 .panel-default{
-	margin-top:200px;
+	margin-top:0px;
+	width:300px;
+	margin-right:20px;
+	margin-left:350px;
 }
 #panel-head{
 	padding-left:90px
 }
 
+.panel-default>.panel-heading{
+	width:275px;
+}
 .wrapper {
   min-height: 100%;
   height: auto !important;
@@ -147,4 +154,8 @@ padding:100px;
 }
 td{
 	color:black;
+}
+.row{
+	width:240px;
+	margin-left:0px;
 }
