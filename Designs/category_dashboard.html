@@ -1,0 +1,27 @@
+{%extends "base.html"%}
+{%block top%}<li><a href="#"><span></span> Logout</a></li>{%endblock%}
+{%block body%}
+
+<div class="panel panel-default">
+  <div class= "panel panel-heading">
+  
+  </div>
+  {%for category in recipe_category%}
+    <div class="panel panel-body">
+	<div class="col-sm-4" href="<!--view recipes in category-->">
+	 {{category.name}}
+	</div>
+	<div class="col-sm-4">
+     {{category.description}}
+    </div>
+	<a class="col-sm-2" href="#">
+	Edit
+	</a>
+	<a class="col-sm-2" href="#">
+	Delete
+	</a>
+	
+</div>
+
+
+{%endblock%}
