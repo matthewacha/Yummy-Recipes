@@ -1,17 +1,18 @@
 <!DOCTYPE html >
-<html>
+<html lang="en">
  <head>
  <title>{{title}}</title>
  <meta charset="utf-8">
- <link rel="stylesheet" type="text/css" href="/bootstrap.min.css">
- <link rel="stylesheet" href="/font-awesome.min.css">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+ <link rel="stylesheet" href="/static/font-awesome.min.css">
  <link rel="stylesheet" type="text/css" href="/static/styles.css">
  </head>
  <body>
  <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Yummy Recipe</a>
+      <a class="navbar-brand" href="#">Yummy Recipes</a>
     </div>
     
     <ul class="nav navbar-nav navbar-right">
@@ -35,7 +36,6 @@
 		{% endfor %}
 	  {% endif %}
 	{% endwith %}
-	
   {%block body%}
   {%endblock%}
   </div>
