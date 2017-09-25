@@ -1,34 +1,24 @@
 {%extends "base.html"%}
 {%block top%}<li><a href="#"><span></span> Logout</a></li>{%endblock%}
 {%block body%}
+  <div name="recipe-panel" class="panel panel-default">
+      <div class="panel-heading">
+	      <div class="row">
+		      <div class="col-md-9">Recipe Names
+			  </div>
+			  <div class="col-md-3"><button type="button" class="btn btn-primary">Add</button>
+			  </div>
+		  </div>
+	  </div>	  
+      <div class="panel-body">
+	      <div class ="row">
+		      <div class="col-md-7">Pasted Meats
+		      </div>
+			  <div class="col-md-2"><button type="button" class="btn btn-default">Edit</button></div>
+			  <div class="col-md-3"><button type="button" class="btn btn-default">Delete</button></div>
+	      </div>
+      </div>
 
-<div class="panel panel-default">
-  <div class= "panel panel-heading">
-   <div class="row">
-   <div class="col-md-8">
-   Recipe Category
-   </div>
-   <a class="col-md-2" href="#">
-   Add
-   </a>
-   </div>
-  </div>
-  {%for category in recipe_category%}
-    <div class="panel panel-body row">
-	<div class="col-md-4" href="<!--view recipes in category-->">
-	 {{category.name}}
-	</div>
-	<div class="col-md-4">
-     {{category.description}}
-    </div>
-	<a class="col-md-2" href="#">
-	Edit
-	</a>
-	<a class="col-md-2" href="#">
-	Delete
-	</a>
-	</div>
-</div>
-
+ </div>
 
 {%endblock%}
