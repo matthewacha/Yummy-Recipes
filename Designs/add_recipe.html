@@ -1,15 +1,15 @@
 {%extends "base.html"%}
 {%block top%}<li><a href="#"><span></span> Signup</a></li>{%endblock%}
 {%block body%}
-<div id="register-form" class="panel panel-default"><p><h1>Login</h1>
+<div id="register-form" class="panel panel-default"><p><h1>Recipe</h1>
  <form id="form-style" action="#" method="POST">
     <div class="form-group">
-     <label for="email">Email address:</label>
-     <input type="email" class="form-control" name="form.email" required>
+     <label for="name">Name:</label>
+     <input type="text" class="form-control" name="form.name" required>
     </div>
     <div class="form-group">
-     <label for="pwd">Password:</label>
-     <input type="password" class="form-control" name="form.password" required>
+     <label for="pwd">Description:</label>
+     <input type="text" class="form-control" name="form.description" required>
     </div>
     <div class="form-group">
   <button type="submit" class="btn btn-default">Submit</button>
