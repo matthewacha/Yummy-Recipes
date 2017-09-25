@@ -16,14 +16,44 @@ body, html {
 }
 .navbar{
 	margin-bottom:0px;
+	border-radius:0px;
 }
-a, .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
+
+.navbar-inverse {
+    background-color: #822dc3;
+    border-color: #822dc3;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+    color: #e5e1d1;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    color: #e5e1d1;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
   color: #aec251;
 }
 
 #background-img{
 	background: url("bckgrnd.jpg") no-repeat center center;
 	
+}
+
+.col-md-2{
+	padding-left:0px;
+	padding-right:0px;
 }
 .form-control{
 	width:300px ;
@@ -55,7 +85,7 @@ label{
   height: 4em;
 }
 .form-control{
-	width:300px;
+	width:280px;
 }
 #input-name{
 	margin-right:30px;
@@ -121,7 +151,7 @@ padding:100px;
 	margin-top:auto;
 	background-color:#822dc3;
 	padding-left:10px;
-	padding-top:25px;
+	padding-top:0px;
 	width:300px;
 }
 
@@ -129,7 +159,7 @@ padding:100px;
 	margin-top:0px;
 	width:300px;
 	margin-right:20px;
-	margin-left:350px;
+	margin-left:420px;
 }
 #panel-head{
 	padding-left:90px
@@ -137,13 +167,28 @@ padding:100px;
 
 .panel-default>.panel-heading{
 	width:275px;
+	background-color:#977bb5;
+	border-bottom:0px;
+	padding-bottom:0px;
+	padding-right:0px;
+	border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
+
+.panel-body {
+    padding: 1px;
+}
+
 .wrapper {
   min-height: 100%;
   height: auto !important;
   height: 100%;
   margin: 0 auto -4em;
 }
+#recipe-panel{
+	padding-left:0px;
+}
+
 #signup-form{
 	width:400px;
 	margin:0px auto;
@@ -156,6 +201,6 @@ td{
 	color:black;
 }
 .row{
-	width:240px;
+	width:258px;
 	margin-left:0px;
 }
