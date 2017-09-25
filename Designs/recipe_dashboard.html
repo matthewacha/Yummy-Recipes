@@ -2,36 +2,24 @@
 {%block top%}<li><a href="#"><span></span> Logout</a></li>{%endblock%}
 {%block body%}
 
- <div class="panel panel-default">
-  <div class= "panel panel-heading">
-   <div class="row">
-   <div class="col-md-8">
-    Confectionary
-   </div>
-   <a class="col-md-2" href="#">
-   Add
-   </a>
-   </div>
-  </div>
-  {% for recipe in recipes %}
-    <div class="panel panel-body row">
-	<div class="col-md-4" href="<!--view recipes in category-->">
-	 {{recipe.name}}
-	</div>
-	<div class="col-md-4">
-     {{category.description}}
-    </div>
-	<div>
-	<a class="col-md-2" href="#">
-	Edit
-	</a>
-	</div>
-	<div>
-	<a class="col-md-2" href="#">
-	Delete
-	</a>
-	</div>
-	</div>
-  {% endfor %}
+  <div name="recipe-panel" class="panel panel-default">
+      <div class="panel-heading">
+	      <div class="row">
+		      <div class="col-md-9">Duck Olel
+			  </div>
+			  <div class="col-md-3"><button type="button" class="btn btn-primary">Add</button>
+			  </div>
+		  </div>
+	  </div>	  
+      <div class="panel-body">
+	      <div class ="row">
+		      <div class="col-md-7">Duck olel
+		      </div>
+			  <div class="col-md-2"><button type="button" class="btn btn-default">Edit</button></div>
+			  <div class="col-md-3"><button type="button" class="btn btn-default">Delete</button></div>
+	      </div>
+      </div>
+
  </div>
+
 {%endblock%}
