@@ -46,7 +46,7 @@ class Category(yummy.Model):
     id = yummy.Column(yummy.Integer, primary_key=True)
     name = yummy.Column(yummy.String(60), nullable=False)
     description = yummy.Column(yummy.String(200), nullable=False)
-    recipe_id=yummy.Column(yummy.Integer,ForeignKey('recipies.id'))
+    recipe_id=yummy.Column(yummy.Integer, ForeignKey('recipies.id'))
     user = yummy.relationship('User', backref='categories',
                                  lazy='dynamic')
     def __init__(self, name, description):
@@ -62,7 +62,7 @@ class Recipe(yummy.Model):
     description = yummy.Column(yummy.String(500), nullable=False)
     category = yummy.relationship('Category', backref='recipes', \
 	                               lazy='dynamic')
-    def __init__(self,name, description):
+    def __init__(self, name, description):
         self.name = name 
         self.description = description
     def __repr__(self):
@@ -70,6 +70,6 @@ class Recipe(yummy.Model):
 
     #create engine to store data in local database directory   
 
-shoppers.Model.metadata.bind = create_engine('sqlite:///shoppers.db') 
+shoppers.Model.metadata.bind = create_engine('sqlite:///yummy.db') 
 
 shoppers.create_all
