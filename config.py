@@ -1,5 +1,7 @@
 """config for different environments"""
 import os
+from app import app
+from flask_wtf.csrf import CSRFProtect
 #define directory for application
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -18,4 +20,5 @@ class Developer(Config):
     +os.path.join(BASEDIR, 'yummy_db.db')
     WTF_CSRF_ENABLED = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True
-	
+    WTF_CSRF_SECRET_KEY = 'XMAS1945mars'
+    csrf = CSRFProtect(app)
