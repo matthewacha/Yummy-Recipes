@@ -1,19 +1,21 @@
+"""config for different environments"""
 import os
 #define directory for application
-BASEDIR= os.path.abspath(os.path.dirname(__file__))
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
-class configBase():
+class Config(object):
+    """config super class"""
     DEBUGING = True
-    SQLALCHEMY_DATABASE_URI='postgresql///'\
-    +os.path.join(BASEDIR,'yummy_db')
+    SQLALCHEMY_DATABASE_URI = 'postgresql:///'\
+    +os.path.join(BASEDIR, 'yummy_db')
     WTF_CSRF_ENABLED = False
     SECRET_KEY = 'Xmas1945Mars'
-
- 
-class Developer(configBase): 
-    #for development purposes
-    SQLALCHEMY_DATABASE_URI='sqlite///'\
-    +os.path.join(BASEDIR,'yummy_db')
-    WTF_CSRF_ENABLED = True
 	
+class Developer(Config): 
+    """for development purposes"""
+    DEVELOPMENT = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///'\
+    +os.path.join(BASEDIR, 'yummy_db.db')
+    WTF_CSRF_ENABLED = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 	

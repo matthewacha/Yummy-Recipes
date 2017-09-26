@@ -70,6 +70,6 @@ class Recipe(yummy.Model):
 
     #create engine to store data in local database directory   
 
-yummy.Model.metadata.bind = create_engine('sqlite:///yummy.db') 
+yummy.Model.metadata.bind = create_engine('sqlite:///yummy_db.db') 
 
 yummy.create_all
