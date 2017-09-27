@@ -3,10 +3,13 @@ from flask_login import login_required, login_user, logout_user
 from app.user.forms import Registerform, Loginform
 from app import csrf
 
+from app.user import forms
+from forms import Registerform, Loginform
 from app import yummy
 from ..models import User
 from . import user
 
+@csrf.exempt
 @user.route('/signup', methods=['GET','POST'])
 def register():
     form = Registerform(request.form)
