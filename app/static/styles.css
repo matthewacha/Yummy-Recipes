@@ -113,11 +113,13 @@ label{
 #rows{
 	padding-bottom:0px;
 }
+
 .intro-divider {
     
     border-top: 1px solid #f8f8f8;
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
+
 p{
 	color:#f8f8f8;
 }
@@ -172,6 +174,7 @@ padding:100px;
   height: 100%;
   margin: 0 auto -4em;
 }
+
 #recipe-panel{
 	padding-left:0px;
 }
@@ -181,12 +184,7 @@ padding:100px;
 	margin:0px auto;
 	margin-top:0px;
 }
-.table{
-	background-color: cadetblue
-}
-td{
-	color:black;
-}
+
 .row{
 	width:258px;
 	margin-left:0px;
