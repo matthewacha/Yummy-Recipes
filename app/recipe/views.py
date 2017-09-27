@@ -18,8 +18,8 @@ def list_categories():
 @login_required 
 def add_category(): 
     add_category = True
-    form=Categoryform()
-    if request.method=='POST':
+    form = Categoryform()
+    if request.method == 'POST':
         try:
             if form.validate():
                 Iname=form.name.data
@@ -59,7 +59,7 @@ def edit_category(id):
                             add_item=add_item, form=form,\
 							category=category, title="Edit category")
 						   
-@recipe.route('/dashboard/delete/<int:id>',methods=['GET','POST'])
+@recipe.route('/dashboard/delete/<int:id>',methods=['GET', 'POST'])
 @login_required
 def delete_category(id):
  category = Categories.query.get_or_404(id)
@@ -131,7 +131,7 @@ def edit_recipe(id):
                             add_recipe=add_recipe, form=form,\
 							category=category, title="Edit Recipe")
 						   
-@recipe.route('/recipe/delete/<int:id>',methods=['GET','POST'])
+@recipe.route('/recipe/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
 def delete_recipe(id):
     recipe = recipes.query.get_or_404(id)
