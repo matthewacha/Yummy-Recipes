@@ -1,24 +1,19 @@
 {%extends "base.html"%}
-{%block top%}<li><a href="#"><span></span> Logout</a></li>{%endblock%}
+{%block top%}<li><a href="/logout"><span></span> Logout</a></li>{%endblock%}
 {%block body%}
  <div name="recipe-panel" class="panel panel-default">
       <div class="panel-heading">
-	      <div class="row">
-		      <div class="col-md-9">Duck Olel
-			  </div>
-			  <div class="col-md-3"><button type="button" class="btn btn-primary">Add</button>
-			  </div>
-		  </div>
-	  </div>	  
+	      
+		      <p>Duck Olel
+			  </p>
+		  
+	  </div>	
+      {%for recipe in recipes%}	  
       <div class="panel-body">
-	      <div class ="row">
-		      <div class="col-md-7">Duck olel
-		      </div>
-			  <div class="col-md-2"><button type="button" class="btn btn-default">Edit</button></div>
-			  <div class="col-md-3"><button type="button" class="btn btn-default">Delete</button></div>
-	      </div>
+		      <li><a href="/recipe/edit"><p>{{recipe}}
+		      </p></a></li>
       </div>
-
+      {%endfor%}
  </div>
 
 {%endblock%}

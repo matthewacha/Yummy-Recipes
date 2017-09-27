@@ -46,7 +46,7 @@ class Category(yummy.Model):
     id = yummy.Column(yummy.Integer, primary_key=True)
     name = yummy.Column(yummy.String(60), nullable=False)
     description = yummy.Column(yummy.String(200), nullable=False)
-    recipe_id=yummy.Column(yummy.Integer, ForeignKey('recipies.id'))
+    recipe_id=yummy.Column(yummy.Integer, ForeignKey('recipes.id'))
     user = yummy.relationship('User', backref='categories',
                                  lazy='dynamic')
     def __init__(self, name, description):
@@ -56,7 +56,7 @@ class Category(yummy.Model):
         return '{} {}'.format(self.name, self.description)
 		
 class Recipe(yummy.Model):
-    __tablename__ = 'recipies'	
+    __tablename__ = 'recipes'	
     id = yummy.Column(yummy.Integer, primary_key=True)
     name = yummy.Column(yummy.String(100), nullable=False)
     description = yummy.Column(yummy.String(500), nullable=False)
