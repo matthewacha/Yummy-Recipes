@@ -8,7 +8,7 @@
        </div>
        {%for recipe in list_recipes%}
             <div class="panel panel-body">
-	            {{recipe.name}}
+	            <li><a href="{{url_for('edit_category')}}">{{recipe.name}}</a></li>
 	        </div>
 	   {%endfor%}	
 		    <div style="text-align: center">
