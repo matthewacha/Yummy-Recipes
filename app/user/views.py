@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_required, login_user, logout_user
 from app.user.forms import Registerform, Loginform
-from app import csrf
+#from app import csrf
 
 from app.user import forms
 from forms import Registerform, Loginform
@@ -9,7 +9,6 @@ from app import yummy
 from ..models import User
 from . import user
 
-@csrf.exempt
 @user.route('/signup', methods=['GET','POST'])
 def register():
     form = Registerform(request.form)
@@ -27,7 +26,7 @@ def register():
         flash('Sorry,wrong email or password')
         print form.errors
         return redirect(url_for('user.register'))		
-    return render_template('register.html', title = 'Signup', form = form, csrf_token=csrf)
+    return render_template('register.html', title = 'Signup', form = form)
    
 @user.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -43,7 +42,8 @@ def login():
                 flash('Wrong password')	
                 return redirect(url_for('user.login'))
             flash('Wrong password')
-        print form.errors	
+        print form.errors
+        flash('Please input your credentials again')		
         return redirect(url_for('user.login'))	
     return render_template('login.html', tilte='Login', form = form)
 

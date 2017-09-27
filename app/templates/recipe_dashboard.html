@@ -1,19 +1,29 @@
 {%extends "base.html"%}
 {%block top%}<li><a href="/logout"><span></span> Logout</a></li>{%endblock%}
 {%block body%}
- <div name="recipe-panel" class="panel panel-default">
-      <div class="panel-heading">
-	      
-		      <p>Duck Olel
-			  </p>
-		  
-	  </div>	
-      {%for recipe in recipes%}	  
-      <div class="panel-body">
-		      <li><a href="/recipe/edit"><p>{{recipe}}
-		      </p></a></li>
+<div id="register-form" class="panel panel-default">
+   {%if list_recipes%}
+       <div class= "panel panel-heading">
+         <h2>Recipes</h2>
+       </div>
+       {%for recipe in list_recipes%}
+            <div class="panel panel-body">
+	            {{recipe.name}}
+	        </div>
+	   {%endfor%}	
+		    <div style="text-align: center">
+    {% else %}
+        <div style="text-align: center">
+            <h3> No recipes have been added. </h3>
+            <hr class="intro-divider">
+    {% endif %}
+        <a href="{{ url_for('recipe.add_recipe') }}" class="btn btn-default btn-lg">
+        <i class=""></i>
+            Add recipe
+        </a>
+        </div>
       </div>
-      {%endfor%}
- </div>
+</div>
+
 
 {%endblock%}
