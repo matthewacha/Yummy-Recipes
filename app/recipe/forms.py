@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import TextField, StringField
-from wtforms.validators import DataRequired, Email, Length
+from wtforms.validators import DataRequired, Length
 from ..models import Category, Recipe
 
 class Categoryform(FlaskForm):
