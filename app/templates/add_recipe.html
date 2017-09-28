@@ -5,6 +5,7 @@
     {%if add_recipe %} 
        <h1>Add Recipe</h1>
 	   <form id="form-style" action="/dashboard" method="POST">
+	       {{form.csrf_token}}
            <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control" name="form.name" required placeholder="recipe name">
@@ -20,6 +21,7 @@
     {%else%}
        <h1>Edit Recipe</h1>
 	   <form id="form-style" action="/dashboard" method="POST">
+	       {{form.csrf_token}}
            <div class="form-group">
                <label for="name">Name:</label>
                <input type="text" class="form-control" name="form.name" required placeholder="new recipe name">
