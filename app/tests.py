@@ -5,7 +5,7 @@ from flask import url_for
 from app import app, yummy
 
 
-TEST_DB = 'test_db'
+TEST_DB = ':memory:'
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
 class BasicTest(unittest.TestCase):
@@ -15,7 +15,7 @@ class BasicTest(unittest.TestCase):
         app.config['WTF_CSRF_ENABLE'] = False
         app.config['DEBUG'] = False
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+\
-        os.path.join(BASEDIR, 'TEST_DB')
+        os.path.join(BASEDIR, TEST_DB)
         app.config['SERVER_NAME'] = 'localhost:5000'
         self.app = app.test_client()
         yummy.drop_all()
