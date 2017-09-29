@@ -68,8 +68,8 @@ class Recipe(yummy.Model):
     def __repr__(self):
         return '{}'.format(self.name)	
 
-    #create engine to store data in local database directory   
+    #create engine to store data in local non-persistent database directory   
 
-yummy.Model.metadata.bind = create_engine('sqlite:///yummy_db.db') 
+yummy.Model.metadata.bind = create_engine('sqlite:///:memory:') 
 
-yummy.create_all
+yummy.create_all()
