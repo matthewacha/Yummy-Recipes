@@ -40,7 +40,7 @@ def login():
             n_user = User.query.fetch_all(email = form.email.data).first()
             if nuser is not None:
                 if User.verify_password(form.password.data):
-			        login_user(n_user)
+                    login_user(n_user)
 			        flash('Welcome!!')
 			        return redirect(url_for('recipe.list_categories'))
                 flash('Wrong password')	
