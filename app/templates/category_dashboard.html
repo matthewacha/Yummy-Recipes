@@ -1,33 +1,36 @@
 {%extends "base.html"%}
-{%block top%}<li><a href="#"><span></span> Logout</a></li>{%endblock%}
+{%block top%}<li><a href="/signup"><span></span> Logout</a></li>{%endblock%}
 {%block body%}
 
-<div class="panel panel-default">
-  <div class= "panel panel-heading">
-   <div class="row">
-   <div class="col-md-8">
-   Recipe Category
-   </div>
-   <a class="col-md-2" href="#">
-   Add
-   </a>
-   </div>
-  </div>
-  {%for category in recipe_category%}
-    <div class="panel panel-body row">
-	<div class="col-md-4" href="<!--view recipes in category-->">
-	 {{category.name}}
-	</div>
-	<div class="col-md-4">
-     {{category.description}}
-    </div>
-	<a class="col-md-2" href="#">
-	Edit
-	</a>
-	<a class="col-md-2" href="#">
-	Delete
-	</a>
-	</div>
+<div id="register-form" class="panel panel-default">
+   {%if list_categories%}
+        <div class= "panel panel-heading">
+		    <div class="row" >
+			    <div class="col-md-8">
+                    <h2>Categories</h2>
+		        </div>
+				<div class="col-md-4">
+				    <li><a href="{{url_for('recipe.add_categories')}}">Add</a></li>
+				</div>
+			</div>
+        </div>
+        {%for category in list_categories%}
+            <div class="panel panel-body">
+	        <li><a href="{{url_for('recipe.list_recipes')}}">{{category.name}}</a></li>
+	        </div>
+	    {%endfor%}	
+		 <div style="text-align: center">
+    {% else %}
+        <div style="text-align: center">
+            <h3> No categories have been added. </h3>
+            <hr class="intro-divider">
+    {% endif %}
+            <a href="{{ url_for('recipe.add_category') }}" class="btn btn-success btn-lg">
+            <i></i>
+            Add category
+            </a>
+        </div>
+      </div>
 </div>
 
 
