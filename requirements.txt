@@ -48,7 +48,6 @@ Tree==0.2
 urllib3==1.22
 virtualenv==15.1.0
 virtualenv-clone==0.2.6
-<<<<<<< HEAD
 virtualenvwrapper==4.7.2
 virtualenvwrapper-powershell==12.7.8
 Werkzeug==0.12.2
