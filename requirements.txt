@@ -16,7 +16,7 @@ Flask-Restless==0.17.0
 Flask-SQLAlchemy==2.2
 Flask-Testing==0.6.2
 Flask-WTF==0.14.2
-gunicron==19.7.1
+gunicorn==19.7.1
 idna==2.6
 isort==4.2.15
 itsdangerous==0.24
