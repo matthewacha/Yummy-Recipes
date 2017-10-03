@@ -41,8 +41,8 @@ def login():
             if nuser is not None:
                 if User.verify_password(form.password.data):
                     login_user(n_user)
-			        flash('Welcome!!')
-			        return redirect(url_for('recipe.list_categories'))
+                    flash('Welcome!!')
+                    return redirect(url_for('recipe.list_categories'))
                 flash('Wrong password')	
                 return redirect(url_for('user.login'))
             flash('Wrong password')
