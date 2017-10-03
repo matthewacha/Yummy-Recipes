@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(object):
     def __init__(self, first_name, last_name, email, password, category_name,category_description,
-                 users=[]):
+                 recipe_name, recipe_description, users=[]):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
@@ -11,6 +11,8 @@ class User(object):
         self.users = users
         self.category_name = category_name
         self.category_description = category_description
+        self.recipe_name = recipe_name
+        self.recipe_description = recipe_description
    
     def password_hsh(self, password):
        #generate password_hash
@@ -29,7 +31,7 @@ class User(object):
                 'email':self.email,
                 'password':self.password_hsh(self.password),
                 'categories':{},
-                'recipes':{}
+                'recipes':[]
             }
         )
         return self.users
@@ -54,66 +56,54 @@ class User(object):
                 if key == 'categories':
                     user['categories'] = {self.category_name:self.category_description}
                     return user['categories']
-    def find_category(self):
+
+    def find_category(self, category_name):
+        for user in self.users():
+            if key == 'categories':
+                for key in user['categories'].keys():
+                    if key == self.category_name:
+                        return key
+                    
+    def find_category_description(self,category_name):
         for user in self.users:
             for key in user.keys():
                 if key == 'categories':
-                    return user['categories'][self.category_name]
-                
-class Category:
-    def __init__(self, name, description):
-        self.name = name
-        self.description = description
-        
-    def add_category(self):
-        for user in user_db:
-            return user
+                    for key in user['categories'].keys():
+                        if key == self.category_name:
+                            return user['categories'][key]
+                        return 'Category does not exist'
+
+    def delete_category(self, category_name):
+        for user in self.users:
             for key in user.keys():
-                if user['categories']:
-                    user['categories'] = {self.name:self.description}
-                    return user['categories']
-                    
-    def find_category(self, name):
-        for user in users:
-            for key in user.iterKeys():
                 if key == 'categories':
-                    for key in user['categories'].iterKeys():
-                        if key == self.name:
-                            return key
-                        
-    def delete_category(self, name):
-        user.pop(User.find_category(self.name))
-         
-    def show_categories(self):
-        for user in users:
-            for key in user.iterKeys():
-                if key == 'categories':
-                    return key
-		
-class Recipe(User):
-    def __init__(self, name, description, category_name):
-        self.name = name 
-        self.description = description
+                    for key in user['categories'].keys():
+                        if key == self.category_name:
+                            user['categories'].pop(self.category_name,None)
+                            return user['categories']
 
-        def add_recipe(self, name, description):
-            for user in users:
-                for key in user.iterKey:
-                    if key == 'recipes':
-                        user['recipes'] = {[self.name, self.description]:self.category_name}
+    def add_recipe(self, recipe_name, recipe_description, category_name):
+        for user in self.users:
+            for key in user.keys():
+                if key == 'recipes':
+                    user['recipes'].append([{self.recipe_name:self.recipe_description},self.category_name])
+                    return user['recipes']
+                
+    def view_recipe(self, recipe_name):
+        for user in self.users:
+            for key in user.keys():
+                if key == 'recipes':
+                    for item in user['recipes']:
+                        for key in item[0].keys():
+                            return item
 
-        def find_recipe(self, name):
-            for user in users:
-                for key in user.iterKeys():
-                    if key == 'recipes':
-                        recipe_info = user['recipes']
-                        for k in recipe_info.iterKeys(): 
-                            if  k[0] == self.name:
-                                return k
-        def delete_recipe(self, name):
-            for user in users:
-                for key in user.iterKeys():
-                    if key == 'recipes':
-                        recipe_info = user['recipes']
-                        for k in recipe_info.iterKeys(): 
-                            if  k[0] == self.name:
-                                del recipe_info[k[0]]
+    def delete_recipe(self, recipe_name):
+        for user in self.users:
+            for key in user.keys():
+                if key == 'recipes':
+                    for item in user['recipes']:
+                        for key in item[0].keys():
+                            if key == self.recipe_name:
+                                user['recipes'].remove(item)
+                                return user['recipes']
+                                
