@@ -10,13 +10,13 @@
                     <h2>Categories</h2>
 		        </div>
 				<div class="col-md-4">
-				    <li><a href="{{url_for('recipe.add_categories')}}">Add</a></li>
+				    <li><a href="{{url_for('recipe.add_category')}}">Add</a></li>
 				</div>
 			</div>
         </div>
         {%for category in list_categories%}
-            <div class="panel panel-body">
-	        <li><a href="{{url_for('recipe.list_recipes')}}">{{category.name}}</a></li>
+            <div class="nav nav-bar">
+	        <li><a href="{{url_for('recipe.list_recipes')}}">{{category}}</a></li>
 	        </div>
 	    {%endfor%}	
 		 <div style="text-align: center">
