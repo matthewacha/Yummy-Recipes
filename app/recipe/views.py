@@ -3,140 +3,124 @@ from flask_login import current_user, login_required
 
 from app.recipe import forms
 from forms import Categoryform, Recipeform
-from ..models import Category, Recipe
+from .. import models
+#from app.models import User
 from . import recipe
-from app import yummy, models
+
+class Recipes(object):
+    def __init__(self, recipe_name, recipe_description):
+        self.recipe_name = recipe_name
+        self.recipe_description = recipe_description
+
+class Categories(object):
+    def __init__(self, category_name, category_description):
+        self.category_name = category_name
+        self.category_description = category_description
+        
+all_categories = []
+all_recipes = []
 
 @recipe.route('/dashboard',methods=['GET','POST'])
-@login_required
 def list_categories():
-    list_categories=Category.query.all()
+    list_categories = all_categories
     return render_template('category_dashboard.html', \
 	                        list_categories=list_categories, title='Categories') 
  
 @recipe.route('/dashboard/add',methods=['GET','POST']) 
-@login_required 
 def add_category(): 
     add_category = True
     form = Categoryform()
-    if request.method == 'POST':
+
+    if request.method == 'POST':       
         try:
-            if form.validate():
-                Iname=form.name.data
-                Description=form.description.data	
-                category = Category(Iname,Description)
-                yummy.session.add(category)
-                yummy.session.commit()
-                flash('Successfully added item')
-                return redirect(url_for('recipe.list_categories'))
-            flash('Wrong email or password')	
-        except:
-            flash('Error')
-     
+            cname = form.category_name.data
+            description = form.category_description.data
+            new_category = Categories(cname, description)
+            all_categories.append(new_category)
+            flash('Successfully added category')
+            return redirect(url_for('recipe.list_categories'))
+            #flash('Wrong email or password')	
+        except :
+            flash('error')
+            print form.errors
     return render_template('add_category.html', action="Add",
                            add_category=add_category, form=form,
                            title="Add Category")
 						   
 
-@recipe.route('/dashboard/edit/<int:id>', methods=['GET','POST'])
-@login_required
-def edit_category(id):
+@recipe.route('/dashboard/edit/<string:category_name>', methods=['GET','POST'])
+def edit_category(category_name):
     add_category=False	
-
-    category = categories.query.get_or_404(id)
     form = Categoryform(obj=category)
-    if form.validate():
-        category.name=form.name.data
-        category.description=form.description.data
-        yummy.session.commit()
+    if request.method == 'POST':
+        all_categories
+        name=form.category_name.data
+        description=form.category_description.data
+        User.add_category(name, description)
         flash('Successfully edited')
-        return redirect(url_for('user.list_categories'))
-  
-    form.description.data = category.description
-    form.name.data = category.name
- 
-    return render_template('dashboard/add.html', action="Edit",\
-                            add_item=add_item, form=form,\
-							category=category, title="Edit category")
+        return redirect(url_for('recipe.list_categories'))
+
+    return render_template('dashboard/add.html', action="Edit",
+                           add_item=add_item, form=form,
+                           category=category, title="Edit category")
 						   
-@recipe.route('/dashboard/delete/<int:id>',methods=['GET', 'POST'])
-@login_required
-def delete_category(id):
- category = Categories.query.get_or_404(id)
- yummy.session.delete(category)
- yummy.session.commit()
- flash('Deleted category')
- return redirect(url_for('recipe.list_category'))
- return render_template(title="Deleted Item")
+@recipe.route('/dashboard/delete/<string:category_name>',methods=['GET', 'POST'])
+def delete_category(category_name):
+    for category in all_categories:
+        if category.category_name == category_name:
+            all_categories.remove(category)
+            flash('Deleted category')
+            return redirect(url_for('recipe.list_categories'))
+    return render_template(title="Deleted Item")
  
 """Crud for recipes"""
 @recipe.route('/recipe',methods=['GET','POST'])
-@login_required
 def list_recipes():
-    list_recipes=Recipes.query.all()
-    return render_template('recipe_dashboard.html', \
-	                        list_recipes=list_recipes, title='Recipes') 
+    list_recipes = all_recipes
+    return render_template('recipe_dashboard.html',
+                           list_recipes = list_recipes, title='Recipes') 
  
 @recipe.route('/recipe/add',methods=['GET','POST']) 
-@login_required 
 def add_recipe(): 
     add_recipe = True
     form = Recipeform()
     if request.method == 'POST':
         try:
-            if form.validate():
-                Iname=form.name.data
-                Description=form.description.data	
-                recipe = Recipe(Iname,Description)
-                yummy.session.add(recipe)
-                yummy.session.commit()
-                flash('Successfully added item')
-                return redirect(url_for('recipe.list_recipes'))
-            flash('Wrong email or password')	
+            lname = form.recipe_name.data
+            description = form.recipe_description.data
+            new_recipe = Recipes(lname, description)
+            all_recipes.append(new_recipe)
+            flash('Successfully added item')
+            return redirect(url_for('recipe.list_recipes'))	
         except:
             flash('Error')
-     
+            print form.errors
     return render_template('add_recipe.html', action="Add",
                            add_recipe=add_recipe, form = form,
-                           title="Add Category")
-						   
-@recipe.route('/recipe/<int:id>')
-def recipe_description():
-    recipe = yummy.session.query(Recipe, User).join(User).\
-	          filter(Recipe.id == id).first()
-    if recipe is not None:
-        return render_template('recipe_description.html', \
-		recipe = recipe, title = 'Description')	
-    flash('Recipe does not exist')
-    return redirect(url_for('recipe.list_categories'))
+                           title="Add Recipe")
 	
-@recipe.route('/recipe/edit/<int:id>', methods=['GET','POST'])
-@login_required
-def edit_recipe(id):
-    add_recipe = False	
-
-    recipe = recipies.query.get_or_404(id)
-    form = Recipeform(obj=recipe)
-    if form.validate():
-        recipe.name = form.name.data
-        recipe.description =form.description.data
-        yummy.session.commit()
-        flash('Successfully edited')
-        return redirect(url_for('user.list_recipes'))
-  
-    form.description.data = recipe.description
-    form.name.data = recipe.name
- 
-    return render_template('dashboard/add_recipe.html', action="Edit",\
-                            add_recipe=add_recipe, form=form,\
-							category=category, title="Edit Recipe")
+@recipe.route('/recipe/edit/<string:recipe_name>', methods=['GET','POST'])
+def edit_recipe(recipe_name):
+    add_recipe = False
+    form = Recipeform()
+    if request.method == 'POST':
+        rname = form.recipe_name.data
+        description = form.recipe_description.data
+        for recipe in all_recipes:
+            if recipe.recipe_name == recipe_name:
+                recipe.recipe_name = rname
+                recipe.recipe_description = description
+                flash('Successfully edited')
+                return redirect(url_for('recipe.list_recipes'))
+            flash('no')
+    return render_template('add_recipe.html', action="Edit",
+                           add_recipe = add_recipe, form=form, title="Edit Recipe")
 						   
-@recipe.route('/recipe/delete/<int:id>', methods=['GET', 'POST'])
-@login_required
-def delete_recipe(id):
-    recipe = recipes.query.get_or_404(id)
-    yummy.session.delete(category)
-    yummy.session.commit()
-    flash('Deleted category')
-    return redirect(url_for('recipe.list_recipes'))
-    return render_template(title="Deleted Item")
+@recipe.route('/recipe/delete/<string:recipe_name>', methods=['GET', 'POST'])
+def delete_recipe(recipe_name):
+    for recipe in all_recipes:
+        if recipe.recipe_name == recipe_name:
+            all_recipes.remove(recipe)
+            flash('Deleted category')
+            return redirect(url_for('recipe.list_recipes'))
+    return render_template('recipe_dashboard.html', title="Deleted Item")
