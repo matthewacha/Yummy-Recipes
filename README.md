@@ -32,7 +32,7 @@ $ source env/bin/activate(for linux)
 $ pip install -r requirements.txt
 
 4.Run the development server:
-$ python app.py
+$ python run.py
 
 5.Navigate to http://localhost:5000
 
