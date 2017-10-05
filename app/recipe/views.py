@@ -3,8 +3,6 @@ from flask_login import current_user, login_required
 
 from app.recipe import forms
 from forms import Categoryform, Recipeform
-from .. import models
-#from app.models import User
 from . import recipe
 
 class Recipes(object):
@@ -19,6 +17,7 @@ class Categories(object):
         
 all_categories = []
 all_recipes = []
+
 
 @recipe.route('/dashboard',methods=['GET','POST'])
 def list_categories():

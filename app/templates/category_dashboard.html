@@ -16,7 +16,7 @@
         </div>
         {%for category in list_categories%}
             <div class="nav nav-bar">
-	        <li><a href="{{url_for('recipe.list_recipes')}}">{{category}}</a></li>
+	        <li><a href="{{url_for('recipe.list_recipes')}}">{{category.category_name}}</a></li>
 	        </div>
 	    {%endfor%}	
 		 <div style="text-align: center">

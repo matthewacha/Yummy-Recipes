@@ -18,7 +18,6 @@ login_manager.init_app(app)
 login_manager.login_message = 'You must be logged in to view this'
 login_manager.view='user.login'
 
-from app import models
 
 from .user import user as user_blueprint
 from .recipe import recipe as recipe_blueprint

@@ -20,7 +20,7 @@
    </form>
     {%else%}
 	<h1>Edit Recipe</h1>
-     <form id="form-style" action="/recipe/edit/<string:name>" method="POST">
+     <form id="form-style" action="/recipe" method="POST">
 	 {{form.csrf_token}}
         <div class="form-group">
         <label for="name">Name:</label>
