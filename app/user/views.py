@@ -15,6 +15,10 @@ class User(object):
         self.password = password
         
 all_users = []
+@user.route('/', methods = ['GET','POST'])
+def index():
+    return redirect(url_for('user.register'))
+
 @user.route('/signup', methods=['GET','POST'])
 def register():
     form = Registerform()
@@ -52,8 +56,7 @@ def login():
 
 @user.route('/logout', methods = ['GET','POST'])
 def logout():
-    if session['logged_in'] == True:
-        session.clear()
-        flash('Login to resume')
-        return render_template('user.login')
-    return render_template('user.login')
+    session.clear()
+    flash('Login to resume')
+    return redirect(url_for('user.login'))
+  
