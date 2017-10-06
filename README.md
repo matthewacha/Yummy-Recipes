@@ -34,7 +34,7 @@ $ pip install -r requirements.txt
 4.Run the development server:
 $ python run.py
 
-5.Navigate to http://localhost:5000
+5.Navigate to http://localhost:5000/signup
 
 Requirements
 ============
