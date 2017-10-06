@@ -34,7 +34,6 @@ def register():
             return redirect(url_for('user.login'))
         except:
             flash('Sorry,wrong email or password')
-            print form.errors
         return redirect(url_for('user.register'))
     return render_template('register.html', title = 'Signup',
                            form = form)
