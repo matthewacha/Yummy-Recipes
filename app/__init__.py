@@ -19,8 +19,8 @@ login_manager.login_message = 'You must be logged in to view this'
 login_manager.view='user.login'
 
 
-from .user import user as user_blueprint
-from .recipe import recipe as recipe_blueprint
+from user.views import user as user_blueprint
+from recipe.views import recipe as recipe_blueprint
 
 app.register_blueprint(user_blueprint)
 app.register_blueprint(recipe_blueprint)

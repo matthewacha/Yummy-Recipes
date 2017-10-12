@@ -18,7 +18,7 @@ class Developer(Config):
     DEVELOPMENT = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///'\
     +os.path.join(BASEDIR, ':memory:')
-    WTF_CSRF_ENABLED = True
+    WTF_CSRF_ENABLED = False
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     WTF_CSRF_SECRET_KEY = 'XMAS1945mars'
    

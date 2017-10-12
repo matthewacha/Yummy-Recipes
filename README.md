@@ -56,7 +56,6 @@ How to use it
 
 2.After signing up, user must login everytime they want to use the app.
 ![image](https://user-images.githubusercontent.com/30747298/30844176-3dc5062a-a296-11e7-9fdd-0e70a29201b0.png)
->>>>>>> 1651054aedffe5aab44fb03f50219675eba0cfe5
 
 3.Create,edit,delete recipe categories through a dynamice user panel
 
