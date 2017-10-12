@@ -49,33 +49,33 @@ def add_recipe():
                            add_recipe=add_recipe, form = form,
                            title="Add Recipe")
 	
-@recipe.route('/recipe/edit/<string:recipe_name2>', methods=['GET','POST'])
+@recipe.route('/recipe/edit/<string:recipe_name>', methods=['GET','POST'])
 @login_required
-def edit_recipe(recipe_name2):
+def edit_recipe(recipe_name):
     add_recipe = False
     form = Recipeform()
     if request.method == 'POST':
         rname = form.recipe_name.data
         description = form.recipe_description.data
         for user in all_users:
-                if user['email'] == session['current_user']:
-                    for recipe in user['recipes']:
-                        if recipe['recipe_name']==recipe_name2:
-                            recipe['recipe_name']=rname
-                            recipe['recipe_description']=description
-                            flash('Successfully edited')
-                            return redirect(url_for('recipe.list_recipes'))
+            if user['email'] == session['current_user']:
+                for recipe in user['recipes']:
+                    if recipe['recipe_name']==recipe_name:
+                        recipe['recipe_name']=rname
+                        recipe['recipe_description']=description
+                        flash('Successfully edited')
+                        return redirect(url_for('recipe.list_recipes'))
     return render_template('add_recipe.html', action="Edit",
                                        add_recipe = add_recipe, form=form, title="Edit Recipe")
 						   
-@recipe.route('/recipe/delete/<string:recipe_name1>', methods=['GET', 'POST'])
+@recipe.route('/recipe/delete/<string:recipe_name>', methods=['GET', 'POST'])
 @login_required
-def delete_recipe(recipe_name1):
+def delete_recipe(recipe_name):
     if request.method == 'POST':
         for user in all_users:
                 if user['email'] == session['current_user']:
                     for recipe in user['recipes']:
-                        if recipe['recipe_name']==recipe_name1:
+                        if recipe['recipe_name']==recipe_name:
                             user['recipes'].remove(recipe)
                             flash('Successfully deleted')
                             return redirect(url_for('recipe.list_recipes'))

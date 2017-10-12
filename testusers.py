@@ -1,6 +1,7 @@
 import unittest
 from app import app
 
+
 class TestsUsers(unittest.TestCase):
     #check tests work
     def test_registerpage(self):
@@ -223,5 +224,6 @@ class TestsRecipes(unittest.TestCase):
         response = tester.post('recipe/delete/Sea Food',
                                follow_redirects=True)
         self.assertIn(u'Successfully deleted', response.data)
+        
 if __name__=='__main__':
     unittest.main()
