@@ -199,7 +199,7 @@ class TestsRecipes(unittest.TestCase):
                                                                  recipe_description='simmer for two minutes'),
                                follow_redirects=True)
         self.assertIn(u'Sea and lake Foods', response.data)
-        self.assertIn(u'Sea Food', response.data)
+        self.assertIn(u'Beans and peas', response.data)
 
     #ensure non-logged in user cant delete recipe
     def test_unauthorised_delete_recipe(self):
