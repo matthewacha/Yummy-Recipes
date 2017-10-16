@@ -144,6 +144,7 @@ class TestsRecipes(unittest.TestCase):
                               follow_redirects=True)
         response = tester.get('/recipe/add')
         self.assertEqual(response.status_code, 200)
+        
     #ensure non-logged in user cant add recipe
     def test_invalid_add_recipe(self):
         tester = app.test_client(self)
@@ -169,6 +170,7 @@ class TestsRecipes(unittest.TestCase):
                                follow_redirects=True)
         self.assertIn(u'Sea Food', response.data)
         self.assertIn(u'Beans and peas', response.data)
+        self.assertIn(u'2', response.data)
 
 
     #ensure non-logged in user cant edit recipe
@@ -182,10 +184,10 @@ class TestsRecipes(unittest.TestCase):
         tester = app.test_client(self)
         tester.post('/signup', data = dict(first_name='James',
                                            last_name='King',
-                                           email= 'jk@gmail.com',
+                                           email= 'ak@gmail.com',
                                            password='amazon'),
                     follow_redirects=True)
-        tester.post('/login', data = dict(email='jk@gmail.com',password='amazon'),
+        tester.post('/login', data = dict(email='ak@gmail.com',password='amazon'),
                               follow_redirects=True)
         tester.post('/recipe/add', data = dict(recipe_name='Beans and peas',
                                                           recipe_description='add salt'),
@@ -197,7 +199,7 @@ class TestsRecipes(unittest.TestCase):
                                                                  recipe_description='simmer for two minutes'),
                                follow_redirects=True)
         self.assertIn(u'Sea and lake Foods', response.data)
-        self.assertIn(u'Beans and peas', response.data)
+        self.assertIn(u'Sea Food', response.data)
 
     #ensure non-logged in user cant delete recipe
     def test_unauthorised_delete_recipe(self):
