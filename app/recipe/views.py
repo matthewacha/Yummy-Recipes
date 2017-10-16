@@ -41,6 +41,8 @@ def add_recipe():
             for user in all_users:
                 if user['email'] == session['current_user']:
                     user['recipes'].append(new_recipe)
+                    count=len(user['recipes'])
+                    flash(count)
                     flash('Successfully added item')
                     return redirect(url_for('recipe.list_recipes'))
         except:
@@ -63,6 +65,8 @@ def edit_recipe(recipe_name):
                     if recipe['recipe_name']==recipe_name:
                         recipe['recipe_name']=rname
                         recipe['recipe_description']=description
+                        count=len(user['recipes'])
+                        flash(count)
                         flash('Successfully edited')
                         return redirect(url_for('recipe.list_recipes'))
     return render_template('add_recipe.html', action="Edit",
