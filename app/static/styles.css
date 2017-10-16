@@ -80,10 +80,7 @@ label{
 	padding-top:50px;
 }
 
-.footer, .push {
-  clear: both;
-  height: 4em;
-}
+
 .form-control{
 	width:280px;
 }
@@ -116,11 +113,13 @@ label{
 #rows{
 	padding-bottom:0px;
 }
+
 .intro-divider {
     
     border-top: 1px solid #f8f8f8;
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
+
 p{
 	color:#f8f8f8;
 }
@@ -131,17 +130,7 @@ p{
 	padding-left:15px
 }
 
-.intro-message > h1 {
-    margin-left: 0px;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-    font-size: 5em;
-	text-align: center;
-}
 
-.intro-message > h3 {
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
-	text-align:center;
-}
 
 #lists-panel{
 padding:100px;	
@@ -185,6 +174,7 @@ padding:100px;
   height: 100%;
   margin: 0 auto -4em;
 }
+
 #recipe-panel{
 	padding-left:0px;
 }
@@ -194,12 +184,7 @@ padding:100px;
 	margin:0px auto;
 	margin-top:0px;
 }
-.table{
-	background-color: cadetblue
-}
-td{
-	color:black;
-}
+
 .row{
 	width:258px;
 	margin-left:0px;

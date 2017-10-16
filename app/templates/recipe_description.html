@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+{%block top%}<li><a href="/logout"><span></span> Logout</a></li>{%endblock%}
+{%block body%}
+ <div name="recipe-panel" class="panel panel-default">
+      <div class="panel-heading">
+		      <h3>{{recipe.Recipe.name}}
+			  </h3> 
+	  </div>		  
+      <div class="panel-body">
+		   <p>{{recipe.Recipe.description}}</p>     
+      </div>
+ </div>
+
+{%endblock%}
