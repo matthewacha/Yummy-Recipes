@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/matthewacha/Yummy-Recipes.svg?branch=new)](https://travis-ci.org/matthewacha/Yummy-Recipes)
 # Yummy-Recipes
 Keep track of awesome recipes
 
