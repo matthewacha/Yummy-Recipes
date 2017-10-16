@@ -7,6 +7,6 @@ install:
   - pip install coveralls
 # command to run tests
 script:
-  - coverage run testusers.py
-  -after_success:
-  -coveralls
+coverage run testusers.py
+after_success:
+coveralls
