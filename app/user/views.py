@@ -59,8 +59,8 @@ def login():
                         session['current_user']=form.email.data
                         flash('Welcome')
                         return redirect(url_for('recipe.list_recipes'))
-                    flash('Wrong password')
                 flash('Wrong email')
+                redirect(url_for('user.login'))
     return render_template('login.html', tilte='Login', form = form)
 
 @user.route('/logout', methods = ['GET','POST'])

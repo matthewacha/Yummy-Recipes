@@ -34,19 +34,14 @@ def add_recipe():
     add_recipe = True
     form = Recipeform()
     if request.method == 'POST':
-        try:
-            lname = form.recipe_name.data
-            description = form.recipe_description.data
-            new_recipe = {'recipe_name':lname, 'description':description}
-            for user in all_users:
-                if user['email'] == session['current_user']:
-                    user['recipes'].append(new_recipe)
-                    count=len(user['recipes'])
-                    flash(count)
-                    flash('Successfully added item')
-                    return redirect(url_for('recipe.list_recipes'))
-        except:
-            flash('Error')
+        lname = form.recipe_name.data
+        description = form.recipe_description.data
+        new_recipe = {'recipe_name':lname, 'description':description}
+        for user in all_users:
+            if user['email'] == session['current_user']:
+                user['recipes'].append(new_recipe)
+                flash('Successfully added item')
+                return redirect(url_for('recipe.list_recipes'))
     return render_template('add_recipe.html', action="Add",
                            add_recipe=add_recipe, form = form,
                            title="Add Recipe")

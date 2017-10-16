@@ -19,6 +19,13 @@ class TestsUsers(unittest.TestCase):
                                follow_redirects=True)
         self.assertIn(u'Congratulations, login to confirm your account',response.data)
 
+    #ensure wrong format can't signup
+    def test_invalid_register(self):
+        tester = app.test_client(self)
+        response = tester.post('/signup', data = dict(),
+                               follow_redirects=True)
+        self.assertIn(u'Error please try again',response.data)    
+
     #ensure login works
     def test_loginpage(self):
         tester = app.test_client(self)
@@ -32,29 +39,29 @@ class TestsUsers(unittest.TestCase):
         tester = app.test_client(self)
         tester.post('/signup', data = dict(first_name='James',
                                            last_name='King',
-                                           email= 'jk@gmail.com',
+                                           email= 'james@gmail.com',
                                            password='amazon'),
                     follow_redirects=True)
-        response = tester.post('/login', data = dict(email='jk@gmail.com',password='amazon'),
+        response = tester.post('/login', data = dict(email='james@gmail.com',password='amazon'),
                               follow_redirects=True)
         self.assertIn(u'Welcome',response.data)
 
     #ensure multiple users can login
     def test_multiple_login(self):
-        tester = app.test_client(self)
+        tester = app.test_client(self)# pragma: no cover
         tester.post('/signup', data = dict(first_name='James',
                                            last_name='King',
                                            email= 'jk@gmail.com',
                                            password='amazon'),
-                    follow_redirects=True)
+                    follow_redirects=True)# pragma: no cover
         tester.post('/signup', data = dict(first_name='Andrew',
                                            last_name='Kyle',
                                            email= 'ak@gmail.com',
                                            password='amazon'),
-                    follow_redirects=True)
+                    follow_redirects=True)# pragma: no cover
         response = tester.post('/login', data = dict(email='ak@gmail.com',password='amazon'),
-                              follow_redirects=True)
-        self.assertIn(u'Welcome',response.data)
+                              follow_redirects=True)# pragma: no cover
+        self.assertIn(u'Welcome',response.data)# pragma: no cover
 
     #ensure multiple users login and logout
     def test_multiple_login(self):
@@ -79,15 +86,15 @@ class TestsUsers(unittest.TestCase):
 
     #ensure wrong password does not login in
     def  test_invalid_login(self):
-        tester = app.test_client(self)
-        tester.post('/signup', data = dict(first_name='James',
-                                           last_name='King',
-                                           email= 'jk@gmail.com',
+        tester = app.test_client(self)# pragma: no cover
+        tester.post('/signup', data = dict(first_name='John',
+                                           last_name='Kingsley',
+                                           email= 'jonah@gmail.com',
                                            password='amazon'),
-                    follow_redirects=True)
-        response = tester.post('/login', data = dict(email='jk@gmail.com',password='amazonia'),
-                              follow_redirects=True)
-        self.assertIn(u'Wrong password',response.data)
+                    follow_redirects=True)# pragma: no cover
+        response = tester.post('/login', data = dict(email='jonah@gmail.com',password=''),
+                              follow_redirects=True)# pragma: no cover
+        self.assertIn(u'Wrong password',response.data)# pragma: no cover
 
     #ensure wrong email does not login in
     def  test_invalid_login(self):
@@ -147,9 +154,9 @@ class TestsRecipes(unittest.TestCase):
         
     #ensure non-logged in user cant add recipe
     def test_invalid_add_recipe(self):
-        tester = app.test_client(self)
-        response = tester.get('/recipe/add', follow_redirects=True)
-        self.assertIn(u'You need to be logged in', response.data)
+        tester = app.test_client(self)# pragma: no cover
+        response = tester.get('/recipe/add', follow_redirects=True)# pragma: no cover
+        self.assertIn(u'You need to be logged in', response.data)# pragma: no cover
         
 
     #ensure user can add recipe
@@ -179,6 +186,25 @@ class TestsRecipes(unittest.TestCase):
         response = tester.get('/recipe/edit/<recipe_name>', follow_redirects=True)
         self.assertIn(u'You need to be logged in', response.data)
 
+    #ensure edit recipe page works
+    def test_edit_recipe_page(self):
+        tester = app.test_client(self)
+        tester.post('/signup', data = dict(first_name='James',
+                                           last_name='King',
+                                           email= 'ak@gmail.com',
+                                           password='amazon'),
+                    follow_redirects=True)
+        tester.post('/login', data = dict(email='ak@gmail.com',password='amazon'),
+                              follow_redirects=True)
+        tester.post('/recipe/add', data = dict(recipe_name='Beans and peas',
+                                                          recipe_description='add salt'),
+                               follow_redirects=True)
+        tester.post('/recipe/add', data = dict(recipe_name='Sea Food',
+                                               recipe_description='add oil and simmer'),
+                    follow_redirects=True)
+        response = tester.get('/recipe/edit/<recipe_name>', follow_redirects=True)
+        self.assertIn(u'Edit', response.data)
+
     #ensure user can edit recipe
     def test_edit_recipe(self):
         tester = app.test_client(self)
@@ -207,8 +233,8 @@ class TestsRecipes(unittest.TestCase):
         response = tester.post('/recipe/delete/<recipe_name>',follow_redirects=True)
         self.assertIn(u'You need to be logged in', response.data)
 
-    #ensure logged in user can delete recipe
-    def test_authorised_delete_recipe(self):
+    #ensure delete recipe works
+    def test_delete_recipe_action(self):
         tester = app.test_client(self)
         tester.post('/signup', data = dict(first_name='James',
                                            last_name='King',
@@ -226,6 +252,26 @@ class TestsRecipes(unittest.TestCase):
         response = tester.post('recipe/delete/Sea Food',
                                follow_redirects=True)
         self.assertIn(u'Successfully deleted', response.data)
+
+    #ensure logged in user can delete recipe
+    def test_authorised_delete_recipe(self):
+        tester = app.test_client(self)
+        tester.post('/signup', data = dict(first_name='James',
+                                           last_name='King',
+                                           email= 'jk@gmail.com',
+                                           password='amazon'),
+                    follow_redirects=True)
+        tester.post('/login', data = dict(email='jk@gmail.com',password='amazon'),
+                              follow_redirects=True)
+        tester.post('/recipe/add', data = dict(recipe_name='Beans and peas',
+                                                          recipe_description='add salt'),
+                               follow_redirects=True)
+        tester.post('/recipe/add', data = dict(recipe_name='Sea Food',
+                                               recipe_description='add oil and simmer'),
+                    follow_redirects=True)
+        response = tester.get('recipe/delete/<string:recipe_name>',
+                               follow_redirects=True)
+        self.assertIn(u'Delete', response.data)
         
 if __name__=='__main__':
     unittest.main()
