@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+{%block top%}<li><a href="/logout"><span></span> Logout</a></li>{%endblock%}
+{%block body%}
+ <div name="recipe-panel" class="panel panel-default">
+    {%if list_recipes%}
+      <div class="panel-heading">
+	      <div class="row">
+		      <div class="col-md-9">Recipes
+			  </div>
+			  
+			  <div class="col-md-3"><a href="/recipe/add" class = "btn btn-info" role= "button">Add</a>
+			  </div>
+		  </div>
+	  </div>
+    {%for recipe in list_recipes%}	  
+      <div class="panel-body">
+	      <div class ="row">
+		      <div class="col-md-7">{{recipe.recipe_name}}
+		      </div>
+			  <div class="col-md-2"> <a href="/recipe/edit/<string:recipe_name>" class="btn btn-default" role= "button">Edit</a></div>
+			  <div class="col-md-3"><a href="/recipe/delete/<string:recipe_name>" class="btn btn-default" role= "button">Delete</a></div>
+	      </div>
+      </div>
+     {%endfor%}
+	 <div style="text-align: center">
+    {% else %}
+        <div style="text-align: center">
+            <h3> No Recipes have been added. </h3>
+            <hr class="intro-divider"><a href="{{ url_for('recipe.add_recipe') }}" class="btn btn-success btn-lg">
+            <i></i>
+            Add
+            </a>
+    {% endif %}
+            
+        </div>
+      </div>
+
+ </div>
+
+{%endblock%}

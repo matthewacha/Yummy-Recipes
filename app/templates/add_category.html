@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+{%block top%}<li><a href="/signup"><span></span> Logout</a></li>{%endblock%}
+{%block body%}
+<div id="register-form" class="panel panel-default">
+    {%if add_category %} 
+       <h1>Add Category</h1>
+	   <form id="form-style" action="/dashboard/add" method="POST">
+	       {{form.csrf_token}}
+           <div class="form-group">
+                <label for="category_name">Name:</label>
+                <input type="text" class="form-control" name="category_name" required placeholder="category name">
+           </div>
+           <div class="form-group">
+                <label for="category_description">Description:</label>
+                <input type="text" class="form-control" name="category_description" required placeholder="describe your category here">
+           </div>
+           <div class="form-group">
+                <button type="submit" class="btn btn-default">Submit</button>
+           </div>
+       </form>
+    {%else%}
+       <h1>Edit Category</h1>
+	   <form id="form-style" action="/dashboard" method="POST">
+	       {{form.csrf_token}}
+           <div class="form-group">
+               <label for="name">Name:</label>
+               <input type="text" class="form-control" name="category_name" required placeholder="new category name">
+           </div>
+           <div class="form-group">
+               <label for="description">Description:</label>
+               <input type="text" class="form-control" name="category_description" required placeholder="edit your description">
+           </div>
+           <div class="form-group">
+               <button type="submit" class="btn btn-default">Submit</button>
+           </div>
+       </form>
+   {%endif%}
+ 
+</div>
+{%endblock%}

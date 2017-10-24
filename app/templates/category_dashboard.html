@@ -1,0 +1,37 @@
+{%extends "base.html"%}
+{%block top%}<li><a href="/signup"><span></span> Logout</a></li>{%endblock%}
+{%block body%}
+
+<div id="register-form" class="panel panel-default">
+   {%if list_categories%}
+        <div class= "panel panel-heading">
+		    <div class="row" >
+			    <div class="col-md-8">
+                    <h2>Categories</h2>
+		        </div>
+				<div class="col-md-4">
+				    <li><a href="{{url_for('recipe.add_category')}}">Add</a></li>
+				</div>
+			</div>
+        </div>
+        {%for category in list_categories%}
+            <div class="nav nav-bar">
+	        <li><a href="{{url_for('recipe.list_recipes')}}">{{category.category_name}}</a></li>
+	        </div>
+	    {%endfor%}	
+		 <div style="text-align: center">
+    {% else %}
+        <div style="text-align: center">
+            <h3> No categories have been added. </h3>
+            <hr class="intro-divider">
+    {% endif %}
+            <a href="{{ url_for('recipe.add_category') }}" class="btn btn-success btn-lg">
+            <i></i>
+            Add category
+            </a>
+        </div>
+      </div>
+</div>
+
+
+{%endblock%}
