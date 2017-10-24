@@ -18,6 +18,9 @@ def login_required(fx):
             return redirect(url_for('user.login'))
     return wrap
 
+@user.route('/')
+def index():
+    return redirect(url_for('user.register'))
 
 @user.route('/signup', methods=['GET','POST'])
 def register():
