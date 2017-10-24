@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request, Blueprint,session
 from . import forms
-from forms import Registerform, Loginform
+#from forms import Registerform, Loginform
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -24,7 +24,7 @@ def index():
 
 @user.route('/signup', methods=['GET','POST'])
 def register():
-    form = Registerform()
+    form = forms.Registerform()
     if request.method == 'POST':
         try:
             first_name = form.first_name.data
@@ -51,7 +51,7 @@ def register():
    
 @user.route('/login', methods = ['GET', 'POST'])
 def login():
-    form = Loginform()
+    form = forms.Loginform()
     if request.method == 'POST':
         for user in all_users:
             for key in user.keys():
