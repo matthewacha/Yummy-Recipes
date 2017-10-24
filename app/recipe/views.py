@@ -1,8 +1,8 @@
 from flask import url_for, redirect, flash, render_template, request,session
-from app.recipe import forms
+from . import forms
 from app.user.views import all_users
 from functools import wraps
-from forms import Categoryform, Recipeform
+#from forms import Categoryform, Recipeform
 from . import recipe
 from app.user import views
 
@@ -32,7 +32,7 @@ def list_recipes():
 @login_required
 def add_recipe():
     add_recipe = True
-    form = Recipeform()
+    form = forms.Recipeform()
     if request.method == 'POST':
         lname = form.recipe_name.data
         description = form.recipe_description.data
@@ -50,7 +50,7 @@ def add_recipe():
 @login_required
 def edit_recipe(recipe_name):
     add_recipe = False
-    form = Recipeform()
+    form = forms.Recipeform()
     if request.method == 'POST':
         rname = form.recipe_name.data
         description = form.recipe_description.data
